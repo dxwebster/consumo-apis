@@ -75,7 +75,7 @@ export default App;
 O fetch é outra solução para consumo de apis. Ele é um método que existe nos navegadores que consegue fazer essa comunicação com a api.
 Para fazer essa conexão, basta chamar a url da api no método: `await fetch('urlDaAPI')`. O fetch é uma promise, ou seja, é assíncrona, então precisa vir sempre acompanhada do await dentro de uma função async.
 
-Abaixo temos o consumo da API que possui algumas informações relacionada ao universo Star Wars. É importante saber quais os dados que a  API fornece para podermos trabalhar com eles. Aqui, vamos fazer um botão que ao clicar, vai renderizar informações aleatórias dos filmes. Então vamos iniciar a função assim que a página carregar, para já ter uma informação disponível na tela, colocando ela em um 'useEffect' vazio. E vamos também incluir essa função no onClick do botão. 
+Abaixo temos o consumo da API que possui algumas informações relacionada ao universo Star Wars. É importante saber quais os dados que a  API fornece para podermos trabalhar com eles. Aqui, vamos fazer um botão que ao clicar, vai renderizar informações dos filmes mas de forma aleatória. Então vamos iniciar a função assim que a página carregar, para já ter uma informação disponível na tela, colocando ela em um 'useEffect' vazio. E vamos também incluir essa função no onClick do botão. 
 
 Para pegar a responsta do fetch, precisamos criar a variável data (diferente do axios que já cria sozinho). Então vamos armazenar numa variável 'response', a conexão do fetch com a api, e na variável 'data' o response.json(), que nos traz o objeto com nossos dados. Depois, basta pegar essa 'data' e armazenar no estado.
 
