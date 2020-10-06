@@ -6,7 +6,7 @@ Esse é um estudo do consumo de APIs Rest, com duas soluções diferentes, o Axi
 O Axios é uma lib que pode ser instalada na sua aplicação React, e vai permitir que sua aplicação consuma os dados de uma API.
 Para instalar o axios, basta instalar o seguinte comando: `yarn add axios`.
 
-Para utiliza-lo você deve criar um arquivo 'api.ts' que vai conter a conexão com a api, informando a porta que ela está rodando.
+Para utiliza-lo você deve criar um arquivo 'api.js' que vai conter a conexão com a api, informando a porta que ela está rodando.
 
 ```js
 import axios from "axios";
