@@ -24,6 +24,8 @@ Importante saber quais informações sua api está te fornecendo.
 O Axios já armazena automaticamente as informações em uma variável 'data', então basta pegar o 'response.data' e armazenar no estado.
 No caso abaixo, estamos consumindo as informações vinda de um reposiório do github.
 
+Como já vamos disponibilizar as informações assim que a pagina for carregada, podemos incluir essa conexão com a api dentro de um useEffect vazio (sem nenhuma dependência). 
+
 
 ```js
 import React, { useEffect, useState } from 'react';
@@ -34,6 +36,7 @@ function App() {
   const [repository, setRepository] = useState('');
 
   useEffect(() => {
+    
     async function getContent() {
       try {
         const response = await api.get(`repos/facebook/react`);
@@ -46,7 +49,9 @@ function App() {
         console.error(error)
       }
     }
-    getContent();
+
+    getContent(); 
+
   }, [])
 
    return (
