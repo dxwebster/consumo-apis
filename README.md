@@ -138,3 +138,14 @@ function App() {
 
 export default App;
 ``` 
+
+
+# Mais informações:
+
+[Consumindo API no Front e no Back-end | CodeDrops #45](https://www.youtube.com/watch?v=vYlz3SmNXQQ)
+
+## 📕 Licença
+
+Todos os arquivos incluídos aqui, incluindo este _Readme_, estão sob Licença MIT.<br>
+Criado com ❤ por [Adriana Lima](https://github.com/dxwebster)
+
