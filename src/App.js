@@ -1,57 +1,90 @@
-import React, { Component } from 'react';
-import cx from 'classnames';
+import React, { useEffect, useState } from 'react';
+import './styles/App.css';
 
 
-export default class TodoList extends Component {
+import api from './services/api';
 
-    state = {
-        todo: "",
-        todos : [],
-        active: false,
+function App() {
+
+  // Consumindo API Utilizando o Axios
+  const [repository, setRepository] = useState('');
+
+  useEffect(() => {
+
+    async function getContent() {
+      try {
+        const response = await api.get(`repos/facebook/react`);
+        const responseData = response.data
+        setRepository(responseData) 
+
+        console.log(response.data.owner)
+
+      } catch (error) {
+        console.error(error)
+      }
     }
+    getContent();
+  }, [])
 
-    constructor(props) {
-        super(props);
 
-        this.todoChange = this.todoChange.bind(this);
-        this.todoClick = this.todoClick.bind(this);
-        this.todoComplete = this.todoComplete.bind(this);
+  // Consumindo API Utilizando o Fetch
+  const [movieData, setMovieData] = useState('');
 
+  useEffect(() => {
+    newMovie();
+  }, []) 
+
+
+  async function newMovie(){
+    try {
+      const movieNumber = Math.floor(Math.random() * 6) + 1
+      const url = `https://swapi.dev/api/films/${movieNumber}`
+
+      const response = await fetch(url)
+      const data = await response.json(); 
+
+      setMovieData(data)
+
+    } catch (error) {
+      console.error(error)
+      const message = document.querySelector('main')
+      message.innerHTML = `<p class='error'>Desculpe, não foi possível carregar os dados.</p>`
     }
+  }
 
-    render() {
-              
-        return (
-            <>
-                <div>
-                    <h2>Todo List</h2>
+    return (
+      <div className="app">
 
-                     <input onChange={ this.todoChange } type="text" value={ this.state.todo }/>
-                     <button onClick={ this.todoClick }>Adicionar</button>
-                     <p><span>0</span> remaining out of <span>0</span> tasks</p>
-                      
-                    
-                    <ul>{ this.state.todos.map(todo => <li key={ todo } class={this.state.active ? 'is-done' : null} onClick={this.todoComplete}>{ todo }</li>) }</ul>
-                </div>
-                <style>{`.is-done {text-decoration: line-through;}`}</style>
-            </>
-        );
-    }
+        <main>
+          <section>
+            <h1> Listando informações de um Repositório do Github</h1>
+            <p>Consumindo API do github utilizando o Axios</p>
 
-    todoChange(event) {
-        this.setState({ todo : event.target.value });
-    }
+            <li>Nome do Repositório: {repository.full_name}</li>
+            <li>Descrição: {repository.description}</li>
+            <li>Login: {repository.login}</li>
+            <li>Open Issues: {repository.open_issues}</li>
+            <li>Login: {repository.owner && repository.owner.login}</li>
+          </section>
 
-    todoClick() {
-      if(!this.state.todo == " "){
-          this.setState({ todos : [].concat(this.state.todos, this.state.todo) });
-      }   
-    }
+          
+          <section>
+            <h1> Lista de movies do Star Wars</h1>
+            <p>Consumindo API do github utilizando o Fetch</p>
 
-    todoComplete(){
-       const currentState = this.state.active
-       this.setState({active: !currentState})
-    }
+            <li>Nome do Filme: {movieData.title}</li>
+            <li>Episódio: {movieData.episode_id}</li>
+            <li>Diretor: {movieData.director}</li>
+            <li>Data de Lançamento: {movieData.release_date}</li>
+          </section>
 
-    
+          <button type="submit" onClick={newMovie}> Pesquisar </button>
+
+        </main>
+
+      </div>
+    );
+
 }
+
+export default App;
