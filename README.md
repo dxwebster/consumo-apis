@@ -21,7 +21,7 @@ export default api;
 Depois, no arquivo principal, você importa a api e trabalha utilizando as rotas. Aqui no caso, utilizaremos a rota get, para buscar informações.
 Importante saber quais informações sua api está te fornecendo.
 
-O Axios já armazena automaticamente as informações em uma chave 'data', então basta pegar o 'response.data' e armazenar no estado.
+O Axios já armazena automaticamente as informações em uma variável 'data', então basta pegar o 'response.data' e armazenar no estado.
 No caso abaixo, estamos consumindo as informações vinda de um reposiório do github.
 
 
